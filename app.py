@@ -35,5 +35,18 @@ def complete(id):
 
     return redirect(url_for('index'))
 
+@app.route('/delete/<id>')
+def delete(id):
+    # if it does not exist, return 404
+    task_to_delete = Todo.query.get_or_404(id)
+
+    try:
+        db.session.delete(task_to_delete)
+        db.session.commit()
+        # redirect to home page
+        return redirect('/')
+    except:
+        return 'having trouble deleting task'
+
 if __name__ == '__main__':
     app.run(debug=True)
