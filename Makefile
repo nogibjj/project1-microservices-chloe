@@ -8,4 +8,4 @@ format:
 test:
 	python -m pytest -vv --cov=app test_app.py
 
-all: install lint test
+all: install format test
